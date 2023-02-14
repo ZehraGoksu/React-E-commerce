@@ -9,14 +9,17 @@ export default class Category extends Component {
       {categoryId:4, categoryName:"A fourth item"},
       {categoryId:5, categoryName:"And a fifth one"},
     ]
-  }
+  };
+
+
   render() {
     return (
       <div className="col-3">
-        <h4 className="fw-light">Categories</h4>
+        <h4 className="fw-light">Categories - 
+        <span>{this.props.product}</span></h4>
         <ul className="list-group">
-          {this.state.categoryList.map(element=>
-             <li className="list-group-item" key={element.categoryId}>{element.categoryName}</li>)}
+          {this.state.categoryList.map(category=>
+             <li className="list-group-item" onClick={()=>this.props.changeCategory(category)} key={category.categoryId}>{category.categoryName}</li>)}
         </ul>
       </div>
     );

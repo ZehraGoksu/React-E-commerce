@@ -13,7 +13,7 @@ export default class Navi extends Component {
   };
   render() {
     return (
-      <nav className="navbar navbar-expand-lg bg-success p-0 mb-2 fs-4">
+      <nav className="navbar navbar-expand-lg sticky-top bg-success p-0 mb-2 fs-4">
         <div className="collapse navbar-collapse" id="navbarTogglerDemo02">
           <a className="navbar-brand mx-3" href="/">
             <img src="img\logo.png" alt="Site logosu" width={70}></img>
