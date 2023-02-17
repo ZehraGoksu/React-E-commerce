@@ -3,6 +3,7 @@
 //Class component içerisinde farklı farklı fonksiyonlar yazıp render edilen alan içerisinde çağırabiliriz.
 
 import React, { Component } from "react";
+import CartSummary from "./CartSummary";
 
 export default class Navi extends Component {
   state = {
@@ -11,6 +12,7 @@ export default class Navi extends Component {
       { navLinkId: 2, navLinkName: "Link" },
     ]
   };
+  
   render() {
     return (
       <nav className="navbar navbar-expand-lg sticky-top bg-success p-0 mb-2 fs-4">
@@ -30,29 +32,9 @@ export default class Navi extends Component {
            }
           </ul>
         </div>
-
-        <div className="dropdown fs-5 mx-4">
-          <a className="nav-link dropdown-toggle" href="/" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-            Your Basket
-          </a>
-          <ul className="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdownMenuLink">
-            <li>
-              <a className="dropdown-item" href="/">
-                Some news
-              </a>
-            </li>
-            <li>
-              <a className="dropdown-item" href="/">
-                Another news
-              </a>
-            </li>
-            <li>
-              <a className="dropdown-item" href="/">
-                Something else here
-              </a>
-            </li>
-          </ul>
-        </div>
+        
+        <CartSummary cart={this.props.cart}></CartSummary>
+       
       </nav>
     );
   }

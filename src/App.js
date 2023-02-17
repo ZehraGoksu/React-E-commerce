@@ -6,25 +6,48 @@ import ProductList from "./ProductList";
 export default class App extends Component{
   state={
     currentCategory:"",
-    currentProduct:""
+    productList:[],
+    cart:[]
   };
 
   changeCategory = category => {
     this.setState({currentCategory:category.categoryName});
+    this.getProducts(category.id);
   };
 
-  changeProduct = product =>{
-    this.setState({currentProduct: product.productId});
+  addToCart = product =>{
+    let newCart = this.state.cart;
+    var addedCart = newCart.find(added=>added.product.id === product.id);
+    if(addedCart){
+      addedCart.quantity+=1;
+    }
+    else{
+      newCart.push({product:product,quantity:1});
+    }
+    this.setState({newCart});
   }
+      
+  componentDidMount(){
+    this.getProducts();
+  };
+
+  getProducts= categoryId =>{
+    let url = "http://localhost:3000/products";
+    if(categoryId)
+    {
+      url += "?categoryId=" + categoryId;
+    }
+    fetch(url).then(response=>response.json()).then(data=>this.setState({productList:data}));
+  };
 
   render(){
   return (
     <div>
-      <Navi></Navi>
+      <Navi cart={this.state.cart}></Navi>
       <div className="container-fluid">
         <div className="row">
-          <Categories product={this.state.currentProduct} currentCategory={this.state.currentCategory} changeCategory={this.changeCategory} ></Categories>
-          <ProductList  product={this.state.currentProduct}  currentCategory={this.state.currentCategory} changeProduct={this.changeProduct} ></ProductList>
+          <Categories currentCategory={this.state.currentCategory} changeCategory={this.changeCategory} ></Categories>
+          <ProductList addToCart={this.addToCart} product={this.state.productList} currentCategory={this.state.currentCategory}></ProductList>
         </div>
       </div>
     </div>
