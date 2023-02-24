@@ -15,7 +15,7 @@ export default class Category extends Component {
 
   render() {
     return (
-      <div className="col-3">
+      <div>
         <h4 className="fw-light">Categories </h4>
         <ul className="list-group">
           {this.state.categoryList.map(category=>

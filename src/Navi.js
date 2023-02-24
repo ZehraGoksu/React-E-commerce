@@ -4,12 +4,15 @@
 
 import React, { Component } from "react";
 import CartSummary from "./CartSummary";
+import { Link } from "react-router-dom";
 
 export default class Navi extends Component {
   state = {
     navList: [
-      { navLinkId: 1, navLinkName: "Home" },
-      { navLinkId: 2, navLinkName: "Link" },
+      { navLinkId: 1, navLinkName: "Home", link:"home" },
+      { navLinkId: 2, navLinkName: "Link", link:"link" },
+      { navLinkId: 3, navLinkName: "Form-1", link:"form1" },
+      { navLinkId: 4, navLinkName: "Form-2", link:"form2" },
     ]
   };
   
@@ -24,16 +27,16 @@ export default class Navi extends Component {
            {
             this.state.navList.map(listElement=>
               <li className="nav-item" key={listElement.navLinkId}>
-              <a className="nav-link active" aria-current="page" href="/">
+              <Link to={listElement.link} className="nav-link active" aria-current="page">
                {listElement.navLinkName}
-              </a>
+              </Link>
             </li>
             )
            }
           </ul>
         </div>
         
-        <CartSummary cart={this.props.cart}></CartSummary>
+        <CartSummary cart={this.props.cart} deleteToCart={this.props.deleteToCart}></CartSummary>
        
       </nav>
     );

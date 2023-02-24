@@ -7,7 +7,7 @@ export default class ProductList extends Component {
   
   render() {
     return (
-      <div className="col-9">
+      <div>
         <h4 className="fw-light">Product List - <span>{this.props.currentCategory}</span></h4>
         <table className="table table-striped">
           <thead>
